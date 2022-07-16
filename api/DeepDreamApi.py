@@ -1,9 +1,11 @@
 import requests
+from adapters.ApiAdapter import ApiAdapter
+from . import DeepAiApi
 
-class DeepDreamApi:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.url = "https://api.deepai.org/api/deepdream"
+
+class DeepDreamApi(DeepAiApi.DeepAiApi):
+    def __init__(self, api_adapter):
+        super().__init__(api_adapter)
 
     def post(self, image_path):
         files = {'image': open(image_path, 'rb')}
